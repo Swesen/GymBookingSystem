@@ -6,7 +6,7 @@ namespace GymBookingSystem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("New measage");
+            Console.WriteLine("Hello World!");
         }
     }
 }
