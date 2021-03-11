@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>500</x>
-      <y>30</y>
-      <w>210</w>
-      <h>220</h>
+      <x>603</x>
+      <y>36</y>
+      <w>189</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Account&gt;&gt;
 --
@@ -27,10 +27,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>120</y>
-      <w>210</w>
-      <h>120</h>
+      <x>900</x>
+      <y>117</y>
+      <w>189</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>Admin
 --
@@ -42,10 +42,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
-      <y>350</y>
-      <w>240</w>
-      <h>140</h>
+      <x>288</x>
+      <y>324</y>
+      <w>216</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>Costumer
 --
@@ -57,10 +57,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>200</y>
-      <w>150</w>
-      <h>40</h>
+      <x>783</x>
+      <y>189</y>
+      <w>135</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 m2=0..*</panel_attributes>
@@ -69,10 +69,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>390</y>
-      <w>140</w>
-      <h>50</h>
+      <x>495</x>
+      <y>360</y>
+      <w>126</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 
@@ -82,10 +82,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>610</x>
-      <y>610</y>
-      <w>210</w>
-      <h>260</h>
+      <x>702</x>
+      <y>558</y>
+      <w>189</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>Activity
 --
@@ -109,10 +109,10 @@ AddParticipant(User)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>500</x>
-      <y>310</y>
-      <w>210</w>
-      <h>220</h>
+      <x>603</x>
+      <y>288</y>
+      <w>189</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>&lt;&lt;User&gt;&gt;
 --
@@ -129,10 +129,10 @@ AddParticipant(User)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>590</x>
-      <y>240</y>
-      <w>50</w>
-      <h>90</h>
+      <x>684</x>
+      <y>225</y>
+      <w>45</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 m2=0..*</panel_attributes>
@@ -141,10 +141,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>320</y>
-      <w>210</w>
-      <h>160</h>
+      <x>900</x>
+      <y>297</y>
+      <w>189</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>Instructor
 --
@@ -158,10 +158,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>390</y>
-      <w>150</w>
-      <h>50</h>
+      <x>783</x>
+      <y>360</y>
+      <w>135</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 
@@ -171,14 +171,15 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>610</y>
-      <w>210</w>
-      <h>160</h>
+      <x>360</x>
+      <y>558</y>
+      <w>234</w>
+      <h>144</h>
     </coordinates>
-    <panel_attributes>Schedule
+    <panel_attributes>Locale
 --
-activitys: List&lt;Activity&gt;
+-schedule: List&lt;Activity&gt; +get
+-equipment: List&lt;Eqiopment&gt; +get
 
 --
 +CreateActivity(Account)
@@ -191,10 +192,10 @@ activitys: List&lt;Activity&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>680</y>
-      <w>150</w>
-      <h>40</h>
+      <x>585</x>
+      <y>621</y>
+      <w>135</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1= 1
@@ -204,16 +205,17 @@ m2= 0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>610</y>
-      <w>210</w>
-      <h>170</h>
+      <x>1017</x>
+      <y>558</y>
+      <w>189</w>
+      <h>153</h>
     </coordinates>
     <panel_attributes>Equipment
 --
 -type: string
 -id: int
--status: string
+-status: string +get
+-broken: bool +get
 
 --
 +SetAsBroken()
@@ -223,10 +225,10 @@ m2= 0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>810</x>
-      <y>690</y>
-      <w>170</w>
-      <h>40</h>
+      <x>882</x>
+      <y>621</y>
+      <w>153</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=0..*</panel_attributes>
