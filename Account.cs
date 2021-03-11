@@ -8,19 +8,59 @@ namespace GymBookingSystem
 {
     class Account
     {
-        public string Name { get; set; }
         public int Id { get;  }
-        public bool InlogStatus { get; set; }
-        public string Email { get; set; }
-        public string Password { get;  }
+        public bool InlogStatus { get; private set; } = false;
+        public string Email { get; private set; }
+        public string Password { get; private set; }
         public int AccessLevel { get; }
-        public Account()
+        public Account(int id, string email, string password)
         {
+            this.Id = id;
+            this.Email = email;
+            this.Password = password;
+        }
+        public bool EditEmail(string prevEmail, string pass, string newEmail)
+        {
+            if (prevEmail == Email)
+            {
+                if (pass == Password)
+                {
+                    this.Email = newEmail;
+                    return true;
+                }
+            }
+            return false;
+        }
 
-        }
-        public string Info()
+        public bool EditPassword(string email, string pass, string newpass)
         {
-            return "name: " + Name + "mail: " + Email + "password: " + Password;
+            if (email == Email)
+            {
+                if (pass == Password)
+                {
+                    this.Password = newpass;
+                    return true;
+                }
+            }
+            return false;
         }
+
+        public void LogIn()
+        {
+            InlogStatus = true;
+            Console.WriteLine("inlog");
+        }
+
+        public void LogOut()
+        {
+            InlogStatus = false;
+            Console.WriteLine("logout");
+        }
+
+        public string info()
+        {
+            return "email: " + Email + "id:" + Id+ "password: "+ Password;
+        }
+        
     }
 }
