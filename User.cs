@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace GymBookingSystem
 {
-    class User
+    class User: Account
     {
-        public string email { get; set; }
-        public string password { get; set; }
+        public string FirstName { get;  }
+        public string LastName { get;  }
+        public int PhoneNumber { get;  }
 
         public User()
         {
            
 
         }
-        public string Infox()
-        {
-            return "email: " + email + "password: " + password;
-        }
+       public bool setFirstName() { return false; }
+       public bool setLastName() { return false; }
+       public bool setPhoneNumber() { return false; }
     }
 }
