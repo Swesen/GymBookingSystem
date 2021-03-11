@@ -4,18 +4,18 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>603</x>
-      <y>36</y>
+      <x>315</x>
+      <y>0</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Account&gt;&gt;
 --
--id: int +get
--email: string +get
++id: int -set
++email: string -set
 -password: string
--inlogStatus: bool +get
--accessLevel: int +get
++inlogStatus: bool -set
++accessLevel: int -set
 
 --
 +EditEmail()
@@ -27,8 +27,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
-      <y>117</y>
+      <x>612</x>
+      <y>81</y>
       <w>189</w>
       <h>108</h>
     </coordinates>
@@ -42,14 +42,14 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>324</y>
+      <x>0</x>
+      <y>288</y>
       <w>216</w>
       <h>126</h>
     </coordinates>
     <panel_attributes>Costumer
 --
--activeSubscription: bool +get
++activeSubscription: bool -set
 
 --</panel_attributes>
     <additional_attributes/>
@@ -57,8 +57,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>189</y>
+      <x>495</x>
+      <y>153</y>
       <w>135</w>
       <h>36</h>
     </coordinates>
@@ -69,8 +69,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>360</y>
+      <x>207</x>
+      <y>324</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
@@ -82,22 +82,22 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>702</x>
-      <y>558</y>
+      <x>414</x>
+      <y>522</y>
       <w>189</w>
       <h>234</h>
     </coordinates>
     <panel_attributes>Activity
 --
--titel: string +get +set
--description: string +get +set
--startDate: DateTime +get
--endDate: DateTime +get
--instructor: Instructor
--maxParticipants: int +get
--participants: List&lt;User&gt; +get
--local: string +get
--equipment: List&lt;Equipment&gt;
++titel: string
++description: string
++startDate: DateTime -set
++endDate: DateTime -set
++instructor: Instructor
++maxParticipants: int -set
++participants: List&lt;User&gt; -set
++local: string -set
++equipment: List&lt;Equipment&gt; -set
 
 --
 AddEquipment()
@@ -109,16 +109,16 @@ AddParticipant(User)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>603</x>
-      <y>288</y>
+      <x>315</x>
+      <y>252</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
     <panel_attributes>&lt;&lt;User&gt;&gt;
 --
--firstName: string +get
--lastName: string +get
--phoneNumber: int +get
++firstName: string -set
++lastName: string -set
++phoneNumber: int -set
 
 --
 +SetFirstName()
@@ -129,8 +129,8 @@ AddParticipant(User)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>225</y>
+      <x>396</x>
+      <y>189</y>
       <w>45</w>
       <h>81</h>
     </coordinates>
@@ -141,8 +141,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
-      <y>297</y>
+      <x>612</x>
+      <y>261</y>
       <w>189</w>
       <h>144</h>
     </coordinates>
@@ -158,8 +158,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>360</y>
+      <x>495</x>
+      <y>324</y>
       <w>135</w>
       <h>45</h>
     </coordinates>
@@ -171,15 +171,15 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>558</y>
+      <x>72</x>
+      <y>522</y>
       <w>234</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>Locale
 --
--schedule: List&lt;Activity&gt; +get
--equipment: List&lt;Eqiopment&gt; +get
++schedule: List&lt;Activity&gt; -set
++equipment: List&lt;Eqiopment&gt; -set
 
 --
 +CreateActivity(Account)
@@ -192,8 +192,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>585</x>
-      <y>621</y>
+      <x>297</x>
+      <y>585</y>
       <w>135</w>
       <h>36</h>
     </coordinates>
@@ -205,28 +205,27 @@ m2= 0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1017</x>
-      <y>558</y>
+      <x>729</x>
+      <y>522</y>
       <w>189</w>
       <h>153</h>
     </coordinates>
     <panel_attributes>Equipment
 --
--type: string
--id: int
--status: string +get
--broken: bool +get
++type: string -set
++id: int -set
++status: string -set
++broken: bool -set
 
 --
-+SetAsBroken()
-+GetStatus()</panel_attributes>
++SetAsBroken()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>621</y>
+      <x>594</x>
+      <y>585</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
