@@ -8,11 +8,10 @@ namespace GymBookingSystem
 {
     class Equipment
     {
-        public string Type { private set;  get; }
-        public int Id { private set; get; }
+        public string Type { private set; get; }
+        public int Id {private set; get; }
         public string Status { private set; get; }
         public bool Broken { private set; get; }
-
         public  void SetAsBroken(string status)
         {
             Broken = true;
