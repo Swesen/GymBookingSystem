@@ -48,13 +48,12 @@ namespace GymBookingSystem
         public void LogIn()
         {
             InlogStatus = true;
-            Console.WriteLine("inlog");
+
         }
 
         public void LogOut()
         {
             InlogStatus = false;
-            Console.WriteLine("logout");
         }
 
         public string info()
