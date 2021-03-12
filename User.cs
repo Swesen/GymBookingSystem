@@ -8,9 +8,9 @@ namespace GymBookingSystem
 {
     class User : Account
     {
-        public string FirstName { get;  }
-        public string LastName { get;  }
-        public int PhoneNumber { get;  }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public int PhoneNumber { get; private set; }
 
         public User(int id, string email, string password, string firstName, string lastName, int phoneNumer) : base(id, email, password)
         {
@@ -20,8 +20,41 @@ namespace GymBookingSystem
 
 
         }
-       public bool setFirstName() { return false; }
-       public bool setLastName() { return false; }
-       public bool setPhoneNumber() { return false; }
+       public bool setFirstName(string email, string pass, string newname) 
+        {
+            if (email == this.Email)
+            {
+                if (pass == this.Password)
+                {
+                    this.FirstName = newname;
+                    return true;
+                }
+            }
+            return false; 
+        }
+       public bool setLastName(string email, string pass, string newname) 
+        {
+            if (email == this.Email)
+            {
+                if (pass == this.Password)
+                {
+                    this.LastName = newname;
+                    return true;
+                }
+            }
+            return false;
+        }
+       public bool setPhoneNumber(string email, string pass, int phoneNumber) 
+        {
+            if (email == this.Email)
+            {
+                if (pass == this.Password)
+                {
+                    this.PhoneNumber = phoneNumber;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
