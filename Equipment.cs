@@ -12,9 +12,24 @@ namespace GymBookingSystem
         public int Id {private set; get; }
         public string Status { private set; get; }
         public bool Broken { private set; get; }
+
+        public Equipment(string type, int id)
+        {
+            Type = type;
+            Id = id;
+            Status = "";
+            Broken = false;
+        }
+
         public  void SetAsBroken(string status)
         {
             Broken = true;
+            Status = status;
+        }
+
+        public void Repaired(string status)
+        {
+            Broken = false;
             Status = status;
         }
     }
