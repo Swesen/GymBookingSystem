@@ -10,7 +10,7 @@ namespace GymBookingSystem
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public int PhoneNumber { get; private set; }
+        public long PhoneNumber { get; private set; }
 
         public User(int id, string email, string password, string firstName, string lastName, int phoneNumer) : base(id, email, password)
         {
@@ -20,40 +20,35 @@ namespace GymBookingSystem
 
 
         }
-       public bool setFirstName(string email, string pass, string newname) 
+       public bool setFirstName(string pass, string newname) 
         {
-            if (email == this.Email)
+            
+            if (pass == this.Password)
             {
-                if (pass == this.Password)
-                {
-                    this.FirstName = newname;
-                    return true;
-                }
+                this.FirstName = newname;
+                return true;
             }
             return false; 
         }
-       public bool setLastName(string email, string pass, string newname) 
+       public bool setLastName(string pass, string newname) 
         {
-            if (email == this.Email)
+            
+            if (pass == this.Password)
             {
-                if (pass == this.Password)
-                {
-                    this.LastName = newname;
-                    return true;
-                }
+                this.LastName = newname;
+                return true;
             }
             return false;
         }
-       public bool setPhoneNumber(string email, string pass, int phoneNumber) 
+       public bool setPhoneNumber(string pass, long phoneNumber) 
         {
-            if (email == this.Email)
+            
+            if (pass == this.Password)
             {
-                if (pass == this.Password)
-                {
-                    this.PhoneNumber = phoneNumber;
-                    return true;
-                }
+                this.PhoneNumber = phoneNumber;
+                return true;
             }
+            
             return false;
         }
     }
