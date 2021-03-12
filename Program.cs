@@ -8,6 +8,7 @@ namespace GymBookingSystem
 {
     class Program
     {
+        static bool accountLoggedin = false;
         static void Main(string[] args)
         {
             List<Costumer> userList = new List<Costumer>();
@@ -15,17 +16,22 @@ namespace GymBookingSystem
             Console.WriteLine("Welcome");
             do
             {
+                Console.Clear();
                 if (userList.Count() > 0)
                 {
+
+                    if (!accountLoggedin)
+                    {
+
+                        LoginScreen(userList);
+                    }
                     foreach (var user in userList)
                     {
                         if (user.InlogStatus)
                         {
+                            accountLoggedin = true;
                             LoggedinScreen(user);
-                        }
-                        else
-                        {
-                            LoginScreen(userList);
+                            break;
                         }
                     }
                 }
@@ -39,6 +45,7 @@ namespace GymBookingSystem
 
         private static void LoggedinScreen(User user)
         {
+            Console.Clear();
             Console.WriteLine("1 - Show schedule\n2 - User settings\n3 - Logout");
             string input = Console.ReadLine();
             switch (input)
@@ -47,8 +54,9 @@ namespace GymBookingSystem
 
                     break;
                 case "2":
+                    Console.Clear();
                     Console.WriteLine("First name: {0} \nLast name: {1} \nEmail: {2} \nPhone number: {3}",user.FirstName, user.LastName, user.Email, user.PhoneNumber);
-                    Console.WriteLine("1 - Change email \n2 - Change password\n3 - Change name \n4 - Change phone number\n5 - Back");
+                    Console.WriteLine("1 - Change email \n2 - Change password\n3 - Change first name \n4- Change last name \n5 - Change phone number\n6 - Back");
                     input = Console.ReadLine();
                     switch (input)
                     {
@@ -56,13 +64,16 @@ namespace GymBookingSystem
                             ChangeEmail(user);
                             break;
                         case "2":
-
+                            ChangePassword(user);
                             break;
                         case "3":
-
+                            ChangeFirstName(user);
                             break;
                         case "4":
-
+                            ChangeLastName(user);
+                            break;
+                        case "5":
+                            ChangePhoneNumber(user);
                             break;
                         default:
                             break;
@@ -71,14 +82,61 @@ namespace GymBookingSystem
 
                     break;
                 case "3":
-
+                    accountLoggedin = false;
+                    user.LogOut();
                     break;
             }
         }
 
+        private static void ChangePhoneNumber(User user)
+        {
+            Console.WriteLine("Enter password: ");
+            string pass = Console.ReadLine();
+            Console.WriteLine("Enter new phone number: ");
+            long newPhoneNumber = long.Parse(Console.ReadLine());
+            if (user.setPhoneNumber(pass, newPhoneNumber))
+            {
+                Console.WriteLine("Phone number successfully changed");
+            }
+            else
+            {
+                Console.WriteLine("Phone number not successfully changed");
+            }
+        }
+
+        private static void ChangeFirstName(User user)
+        {
+            Console.WriteLine("Enter password: ");
+            string pass = Console.ReadLine();
+            Console.WriteLine("Enter new first name: ");
+            string newFirstName = Console.ReadLine();
+            if (user.setFirstName(pass, newFirstName))
+            {
+                Console.WriteLine("First name successfully changed");
+            }
+            else
+            {
+                Console.WriteLine("First name not successfully changed");
+            }
+        }
+        private static void ChangeLastName(User user)
+        {
+            Console.WriteLine("Enter password: ");
+            string pass = Console.ReadLine();
+            Console.WriteLine("Enter new last name: ");
+            string newLastName = Console.ReadLine();
+            if (user.setLastName(pass, newLastName))
+            {
+                Console.WriteLine("Mail successfully changed");
+            }
+            else
+            {
+                Console.WriteLine("Mail not successfully changed");
+            }
+        }
         private static void LoginScreen(List<Costumer> userList)
         {
-            
+            Console.Clear();
             Console.WriteLine("1 - Register \n2 - Log in");
             int svar = int.Parse(Console.ReadLine());
 
@@ -95,6 +153,7 @@ namespace GymBookingSystem
 
         private static bool LoginUser(List<Costumer> lista)
         {
+            Console.Clear();
             Console.Write("Enter Email: ");
             string email = Console.ReadLine();
             Console.Write("Enter Password: ");
@@ -118,6 +177,7 @@ namespace GymBookingSystem
 
         private static void ChangeEmail(User user)
         {
+            Console.Clear();
             Console.WriteLine("Change mail");
             Console.WriteLine("Enter previus email: ");
             String prevMail = Console.ReadLine();
@@ -134,7 +194,24 @@ namespace GymBookingSystem
                 Console.WriteLine("Mail not successfully changed");
             }
         }
-
+        private static void ChangePassword(User user)
+        {
+            Console.WriteLine("Change pass");
+            Console.WriteLine("Enter email: ");
+            String mail = Console.ReadLine();
+            Console.WriteLine("Enter password: ");
+            String pass = Console.ReadLine();
+            Console.WriteLine("Enter new password: ");
+            String newPass = Console.ReadLine();
+            if (user.EditPassword(mail, pass, newPass))
+            {
+                Console.WriteLine("Password successfully changed");
+            }
+            else
+            {
+                Console.WriteLine("Password not successfully changed");
+            }
+        }
 
         /*
          * Method to register a user
