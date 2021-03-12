@@ -15,10 +15,11 @@ namespace GymBookingSystem
             Locale locale = new Locale();
             List<Costumer> lista = new List<Costumer>();
 
+            // example schedule data
             locale.AddActivity(new Activity("Spinning", "Spinningklass 1 timme", new DateTime(2021, 03, 31, 17, 0, 0), new DateTime(2021, 03, 31, 18, 0, 0), 53422, 10, "Rum 2"));
             locale.AddActivity(new Activity("Cardio", "Cardioklass 1 timme", new DateTime(2021, 03, 31, 18, 0, 0), new DateTime(2021, 03, 31, 19, 0, 0), 58542, 10, "Rum 2"));
             locale.AddActivity(new Activity("Yoga", "Yogaklass 1 timme", new DateTime(2021, 03, 31, 18, 0, 0), new DateTime(2021, 03, 31, 19, 0, 0), 58542, 10, "Rum 1"));
-            ViewSchedule(ref locale);
+            ViewSchedule(ref locale, false);
 
             do
             {
@@ -80,31 +81,53 @@ namespace GymBookingSystem
             } while (true);
         }
 
-        static private void ViewSchedule(ref Locale locale)
+        static private void ViewSchedule(ref Locale locale, bool loggedIn)
         {
-            // view full schedule
-            for (int i = 0; i < locale.Activities.Count; i++)
+            string lineBreak = "------------------------------------------------------------------------";
+            bool stillViewing = true;
+            do
             {
-                Activity activity = locale.Activities[i];
 
-                Console.WriteLine($"{i+1} {activity.StartDate.ToString("MM-dd HH:mm", culture)} - {activity.EndDate.ToString("HH:mm", culture)} - {activity.Title}, {activity.Locale}");
-                Console.WriteLine("-------------------------------------------------------------------------");
-            }
-            Console.Write("Kolla detaljer om nr: ");
-            string input = Console.ReadLine();
-
-            if (int.TryParse(input, out int value))
-            {
-                if (value > 0 && value < locale.Activities.Count + 1)
+                Console.Clear();
+                Console.WriteLine($"nr | Starttid - Sluttid  |   Namn ,  Lokal  |");
+                Console.WriteLine(lineBreak);
+                // view full schedule
+                for (int i = 0; i < locale.Activities.Count; i++)
                 {
-                    Activity activity = locale.Activities[value - 1];
-                    Console.Clear();
-                    Console.WriteLine($"Title: {activity.Title}");
-                    Console.WriteLine($"Beskrivning: {activity.Description}");
-                    Console.WriteLine($"Instruktör: {activity.InstructorID}");
-                    Console.WriteLine($"Dag: {activity.StartDate.ToString("MM-dd", culture)}");
+                    Activity activity = locale.Activities[i];
+
+                    Console.WriteLine($"{i + 1}. | {activity.StartDate.ToString("MM-dd HH:mm", culture)} - {activity.EndDate.ToString("HH:mm", culture)} | {activity.Title}, {activity.Locale}");
+                    Console.WriteLine(lineBreak);
                 }
-            }
+                Console.Write("Kolla detaljer om nr: ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int value))
+                {
+                    if (value > 0 && value < locale.Activities.Count + 1)
+                    {
+                        Activity activity = locale.Activities[value - 1];
+                        Console.Clear();
+                        Console.WriteLine(lineBreak);
+                        Console.WriteLine($"Title: {activity.Title}");
+                        Console.WriteLine($"Beskrivning: {activity.Description}");
+                        Console.WriteLine($"Instruktör: {activity.InstructorID}");
+                        Console.WriteLine($"Lokal: {activity.Locale}");
+                        Console.WriteLine($"Dag: {activity.StartDate.ToString("MM-dd", culture)}");
+                        Console.WriteLine($"Tid: {activity.StartDate.ToString("HH:mm", culture)} - {activity.EndDate.ToString("HH:mm", culture)}");
+                        Console.WriteLine($"Deltagare: {activity.Participants.Count} Max antal: {activity.MaxParticipant}");
+                        Console.WriteLine(lineBreak);
+                    }
+                }
+
+                Console.Write("Vill du fortsätta att titta på schemat? J/N: ");
+                input = Console.ReadLine();
+
+                if (input != "J")
+                {
+                    stillViewing = false;
+                }
+            } while (stillViewing);
         }
     }
 }
