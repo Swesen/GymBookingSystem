@@ -11,17 +11,21 @@ namespace GymBookingSystem
     {
         static bool accountLoggedin = false;
         static CultureInfo culture = CultureInfo.CreateSpecificCulture("se-SE");
+
+        static Locale locale = new Locale();
         static void Main(string[] args)
         {
-            List<Costumer> userList = new List<Costumer>();
-            Locale locale = new Locale();
-            List<Costumer> lista = new List<Costumer>();
+            List<Customer> userList = new List<Customer>();
+            
 
             // example schedule data
             locale.AddActivity(new Activity("Spinning", "Spinningklass 1 timme", new DateTime(2021, 03, 31, 17, 0, 0), new DateTime(2021, 03, 31, 18, 0, 0), 53422, 10, "Rum 2"));
             locale.AddActivity(new Activity("Cardio", "Cardioklass 1 timme", new DateTime(2021, 03, 31, 18, 0, 0), new DateTime(2021, 03, 31, 19, 0, 0), 58542, 10, "Rum 2"));
             locale.AddActivity(new Activity("Yoga", "Yogaklass 1 timme", new DateTime(2021, 03, 31, 18, 0, 0), new DateTime(2021, 03, 31, 19, 0, 0), 58542, 10, "Rum 1"));
-            ViewSchedule(ref locale, false);
+
+            // example user data
+            userList.Add(new Customer(52, "email@mail.com", "password", "Anders", "Andersson", 070532254));
+            userList.Add(new Customer(34532, "john@mail.com", "password", "John", "Svensson", 070532254));
 
             Console.WriteLine("Welcome");
             do
@@ -61,7 +65,7 @@ namespace GymBookingSystem
             switch (input)
             {
                 case "1":
-
+                    ViewSchedule(ref locale, accountLoggedin, user);
                     break;
                 case "2":
                     Console.Clear();
@@ -144,24 +148,27 @@ namespace GymBookingSystem
                 Console.WriteLine("Mail not successfully changed");
             }
         }
-        private static void LoginScreen(List<Costumer> userList)
+        private static void LoginScreen(List<Customer> userList)
         {
             Console.Clear();
-            Console.WriteLine("1 - Register \n2 - Log in");
+            Console.WriteLine("1 - Register \n2 - Log in\n3 - View Schedule");
             int svar = int.Parse(Console.ReadLine());
 
-            if (svar == 1)
+            switch (svar)
             {
-                Registration(userList);
-                Console.WriteLine(userList[userList.Count() - 1].FirstName);
-            }
-            else if (svar == 2)
-            {
-                LoginUser(userList);
+                case 1:
+                    Registration(userList);
+                    break;
+                case 2:
+                    LoginUser(userList);
+                    break;
+                case 3:
+                    ViewSchedule(ref locale, accountLoggedin, new User()) ;
+                    break;
             }
         }
 
-        private static bool LoginUser(List<Costumer> lista)
+        private static bool LoginUser(List<Customer> lista)
         {
             Console.Clear();
             Console.Write("Enter Email: ");
@@ -227,7 +234,7 @@ namespace GymBookingSystem
          * Method to register a user
          * Does not return anything (void)
          */
-        private static void Registration(List<Costumer> lista)
+        private static void Registration(List<Customer> lista)
         {
             Console.WriteLine("Register User");
             Console.WriteLine("Enter first name: ");
@@ -245,7 +252,7 @@ namespace GymBookingSystem
 
             if (pwd == repwd)
             {
-                lista.Add(new Costumer(lista.Count(), em, pwd, fn, ln, pho));
+                lista.Add(new Customer(lista.Count(), em, pwd, fn, ln, pho));
                 Console.WriteLine("Registraion successfull");
             }
             else
@@ -254,7 +261,7 @@ namespace GymBookingSystem
             }
         }
 
-        static private void ViewSchedule(ref Locale locale, bool loggedIn)
+        static private void ViewSchedule(ref Locale locale, bool loggedIn, User user)
         {
             string lineBreak = "------------------------------------------------------------------------";
             bool stillViewing = true;
@@ -290,6 +297,17 @@ namespace GymBookingSystem
                         Console.WriteLine($"Tid: {activity.StartDate.ToString("HH:mm", culture)} - {activity.EndDate.ToString("HH:mm", culture)}");
                         Console.WriteLine($"Deltagare: {activity.Participants.Count} Max antal: {activity.MaxParticipant}");
                         Console.WriteLine(lineBreak);
+
+                        if (loggedIn)
+                        {
+                            Console.WriteLine("Vill du delta? J/N: ");
+                            input = Console.ReadLine();
+
+                            if (input.ToUpper() == "J")
+                            {
+                                activity.AddParticipant(user.Id);
+                            }
+                        }
                     }
                 }
 
