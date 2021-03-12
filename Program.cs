@@ -69,7 +69,7 @@ namespace GymBookingSystem
                     break;
                 case "2":
                     Console.Clear();
-                    Console.WriteLine("First name: {0} \nLast name: {1} \nEmail: {2} \nPhone number: {3}",user.FirstName, user.LastName, user.Email, user.PhoneNumber);
+                    Console.WriteLine("user ID: {4}\nFirst name: {0} \nLast name: {1} \nEmail: {2} \nPhone number: {3}",user.FirstName, user.LastName, user.Email, user.PhoneNumber, user.Id);
                     Console.WriteLine("1 - Change email \n2 - Change password\n3 - Change first name \n4- Change last name \n5 - Change phone number\n6 - Back");
                     input = Console.ReadLine();
                     switch (input)
@@ -236,6 +236,8 @@ namespace GymBookingSystem
          */
         private static void Registration(List<Customer> lista)
         {
+
+            bool falselogin = false;
             Console.WriteLine("Register User");
             Console.WriteLine("Enter first name: ");
             string fn = Console.ReadLine();
@@ -252,8 +254,19 @@ namespace GymBookingSystem
 
             if (pwd == repwd)
             {
-                lista.Add(new Customer(lista.Count(), em, pwd, fn, ln, pho));
-                Console.WriteLine("Registraion successfull");
+                foreach (var user in lista)
+                {
+                    if (user.Email == em)
+                    {
+                        falselogin = true;
+                        break;
+                    }
+                }
+                if (!falselogin)
+                {
+                    lista.Add(new Customer(lista.Count(), em, pwd, fn, ln, pho));
+                    Console.WriteLine("Registraion successfull");
+                }
             }
             else
             {
