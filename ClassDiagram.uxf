@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
-      <y>0</y>
+      <x>675</x>
+      <y>153</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
@@ -27,8 +27,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>612</x>
-      <y>81</y>
+      <x>972</x>
+      <y>234</y>
       <w>189</w>
       <h>108</h>
     </coordinates>
@@ -42,8 +42,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>288</y>
+      <x>360</x>
+      <y>441</y>
       <w>216</w>
       <h>126</h>
     </coordinates>
@@ -57,8 +57,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>153</y>
+      <x>855</x>
+      <y>306</y>
       <w>135</w>
       <h>36</h>
     </coordinates>
@@ -69,8 +69,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>207</x>
-      <y>324</y>
+      <x>567</x>
+      <y>477</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
@@ -82,8 +82,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>414</x>
-      <y>522</y>
+      <x>774</x>
+      <y>675</y>
       <w>189</w>
       <h>234</h>
     </coordinates>
@@ -109,8 +109,8 @@ AddParticipant(User)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
-      <y>252</y>
+      <x>675</x>
+      <y>405</y>
       <w>189</w>
       <h>198</h>
     </coordinates>
@@ -129,8 +129,8 @@ AddParticipant(User)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>189</y>
+      <x>756</x>
+      <y>342</y>
       <w>45</w>
       <h>81</h>
     </coordinates>
@@ -141,8 +141,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>612</x>
-      <y>261</y>
+      <x>972</x>
+      <y>414</y>
       <w>189</w>
       <h>144</h>
     </coordinates>
@@ -158,8 +158,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>324</y>
+      <x>855</x>
+      <y>477</y>
       <w>135</w>
       <h>45</h>
     </coordinates>
@@ -171,8 +171,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
-      <y>522</y>
+      <x>432</x>
+      <y>675</y>
       <w>234</w>
       <h>144</h>
     </coordinates>
@@ -192,8 +192,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>297</x>
-      <y>585</y>
+      <x>657</x>
+      <y>738</y>
       <w>135</w>
       <h>36</h>
     </coordinates>
@@ -205,8 +205,8 @@ m2= 0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>729</x>
-      <y>522</y>
+      <x>1089</x>
+      <y>675</y>
       <w>189</w>
       <h>153</h>
     </coordinates>
@@ -218,14 +218,15 @@ m2= 0..*</panel_attributes>
 +broken: bool -set
 
 --
-+SetAsBroken()</panel_attributes>
++SetAsBroken()
++Repaired()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>594</x>
-      <y>585</y>
+      <x>954</x>
+      <y>738</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
