@@ -11,6 +11,12 @@ namespace GymBookingSystem
         public List<Activity> Activities { private set; get; }
         public List<Equipment> Equipment { private set; get; }
 
+        public Locale()
+        {
+            Activities = new List<Activity>();
+            Equipment = new List<Equipment>();
+        }
+
         public void AddActivity(Activity activity)
         {
             Activities.Add(activity);

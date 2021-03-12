@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GymBookingSystem
 {
-    class Costumer : User
+    class Customer : User
     {
         public bool ActiveSubscription { get; }
-        public Costumer(int id, string email, string password, string firstName, string lastName, int phoneNumer) 
+        public Customer(int id, string email, string password, string firstName, string lastName, int phoneNumer) 
             : base(id, email, password, firstName, lastName, phoneNumer)
         {
 

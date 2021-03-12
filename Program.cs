@@ -3,15 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace GymBookingSystem
 {
     class Program
     {
         static bool accountLoggedin = false;
+        static CultureInfo culture = CultureInfo.CreateSpecificCulture("se-SE");
+
+        static Locale locale = new Locale();
         static void Main(string[] args)
         {
-            List<Costumer> userList = new List<Costumer>();
+            List<Customer> userList = new List<Customer>();
+            
+
+            // example schedule data
+            locale.AddActivity(new Activity("Spinning", "Spinningklass 1 timme", new DateTime(2021, 03, 31, 17, 0, 0), new DateTime(2021, 03, 31, 18, 0, 0), 53422, 10, "Rum 2"));
+            locale.AddActivity(new Activity("Cardio", "Cardioklass 1 timme", new DateTime(2021, 03, 31, 18, 0, 0), new DateTime(2021, 03, 31, 19, 0, 0), 58542, 10, "Rum 2"));
+            locale.AddActivity(new Activity("Yoga", "Yogaklass 1 timme", new DateTime(2021, 03, 31, 18, 0, 0), new DateTime(2021, 03, 31, 19, 0, 0), 58542, 10, "Rum 1"));
+
+            // example user data
+            userList.Add(new Customer(52, "email@mail.com", "password", "Anders", "Andersson", 070532254));
+            userList.Add(new Customer(34532, "john@mail.com", "password", "John", "Svensson", 070532254));
 
             Console.WriteLine("Welcome");
             do
@@ -51,7 +65,7 @@ namespace GymBookingSystem
             switch (input)
             {
                 case "1":
-
+                    ViewSchedule(ref locale, accountLoggedin, user);
                     break;
                 case "2":
                     Console.Clear();
@@ -134,24 +148,27 @@ namespace GymBookingSystem
                 Console.WriteLine("Mail not successfully changed");
             }
         }
-        private static void LoginScreen(List<Costumer> userList)
+        private static void LoginScreen(List<Customer> userList)
         {
             Console.Clear();
-            Console.WriteLine("1 - Register \n2 - Log in");
+            Console.WriteLine("1 - Register \n2 - Log in\n3 - View Schedule");
             int svar = int.Parse(Console.ReadLine());
 
-            if (svar == 1)
+            switch (svar)
             {
-                Registration(userList);
-                Console.WriteLine(userList[userList.Count() - 1].FirstName);
-            }
-            else if (svar == 2)
-            {
-                LoginUser(userList);
+                case 1:
+                    Registration(userList);
+                    break;
+                case 2:
+                    LoginUser(userList);
+                    break;
+                case 3:
+                    ViewSchedule(ref locale, accountLoggedin, new User()) ;
+                    break;
             }
         }
 
-        private static bool LoginUser(List<Costumer> lista)
+        private static bool LoginUser(List<Customer> lista)
         {
             Console.Clear();
             Console.Write("Enter Email: ");
@@ -217,7 +234,7 @@ namespace GymBookingSystem
          * Method to register a user
          * Does not return anything (void)
          */
-        private static void Registration(List<Costumer> lista)
+        private static void Registration(List<Customer> lista)
         {
             Console.WriteLine("Register User");
             Console.WriteLine("Enter first name: ");
@@ -235,13 +252,73 @@ namespace GymBookingSystem
 
             if (pwd == repwd)
             {
-                lista.Add(new Costumer(lista.Count(), em, pwd, fn, ln, pho));
+                lista.Add(new Customer(lista.Count(), em, pwd, fn, ln, pho));
                 Console.WriteLine("Registraion successfull");
             }
             else
             {
                 Console.WriteLine("Password does not match, Unsuccessfull registration");
             }
+        }
+
+        static private void ViewSchedule(ref Locale locale, bool loggedIn, User user)
+        {
+            string lineBreak = "------------------------------------------------------------------------";
+            bool stillViewing = true;
+            do
+            {
+
+                Console.Clear();
+                Console.WriteLine($"nr | Starttid - Sluttid  |   Namn ,  Lokal  |");
+                Console.WriteLine(lineBreak);
+                // view full schedule
+                for (int i = 0; i < locale.Activities.Count; i++)
+                {
+                    Activity activity = locale.Activities[i];
+
+                    Console.WriteLine($"{i + 1}. | {activity.StartDate.ToString("MM-dd HH:mm", culture)} - {activity.EndDate.ToString("HH:mm", culture)} | {activity.Title}, {activity.Locale}");
+                    Console.WriteLine(lineBreak);
+                }
+                Console.Write("Kolla detaljer om nr: ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int value))
+                {
+                    if (value > 0 && value < locale.Activities.Count + 1)
+                    {
+                        Activity activity = locale.Activities[value - 1];
+                        Console.Clear();
+                        Console.WriteLine(lineBreak);
+                        Console.WriteLine($"Title: {activity.Title}");
+                        Console.WriteLine($"Beskrivning: {activity.Description}");
+                        Console.WriteLine($"Instruktör: {activity.InstructorID}");
+                        Console.WriteLine($"Lokal: {activity.Locale}");
+                        Console.WriteLine($"Dag: {activity.StartDate.ToString("MM-dd", culture)}");
+                        Console.WriteLine($"Tid: {activity.StartDate.ToString("HH:mm", culture)} - {activity.EndDate.ToString("HH:mm", culture)}");
+                        Console.WriteLine($"Deltagare: {activity.Participants.Count} Max antal: {activity.MaxParticipant}");
+                        Console.WriteLine(lineBreak);
+
+                        if (loggedIn)
+                        {
+                            Console.WriteLine("Vill du delta? J/N: ");
+                            input = Console.ReadLine();
+
+                            if (input.ToUpper() == "J")
+                            {
+                                activity.AddParticipant(user.Id);
+                            }
+                        }
+                    }
+                }
+
+                Console.Write("Vill du fortsätta att titta på schemat? J/N: ");
+                input = Console.ReadLine();
+
+                if (input != "J")
+                {
+                    stillViewing = false;
+                }
+            } while (stillViewing);
         }
     }
 }

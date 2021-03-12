@@ -20,7 +20,12 @@ namespace GymBookingSystem
 
 
         }
-       public bool setFirstName(string pass, string newname) 
+
+        public User() : base(-1, "", "")
+        {
+        }
+
+        public bool setFirstName(string pass, string newname) 
         {
             
             if (pass == this.Password)
